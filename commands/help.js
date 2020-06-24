@@ -4,7 +4,7 @@ module.exports = {
 	name: 'help',
 	description: 'List all of Poppi\'s commands or info about a specific command.',
 	aliases: ['h', 'commands'],
-	usage: '[command name]',
+	usage: '``?help command``',
 	hidden: false,
 	execute(bot, message, args) {
 		const commands = bot.commands;
@@ -22,9 +22,9 @@ module.exports = {
 			data.push(cmdArray.join('\n'));
 			const embed = {
 				"title": "Poppi",
-				"description": "Poppi is a bot still in the beta stage with new features planned regularly.\n Use ``?help command`` for more information on a specific command.",
+				"description": "Poppi is a bot still in the beta stage.\n Use ``?help command`` for more information on a specific command.",
 				"color": 10299826,
-				"timestamp": "2018-02-14T23:02:05.978Z",
+				"timestamp": "new Date",
 				"footer": {
 					"text": "PoppiBot"
 				},
