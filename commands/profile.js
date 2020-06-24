@@ -3,7 +3,7 @@ const { Profiles } = require('../dbObjects');
 module.exports = {
   name: 'profile',
   aliases: ['p'],
-  description: 'Displays a users profile. Displays yours if no user is specified.',
+  description: 'Displays a user\'s profile. Displays yours if no user is specified.',
   usage: '``?profile @SuperOtaku``',
   hidden: false,
   async execute(bot, message, args) {
