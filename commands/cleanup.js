@@ -4,7 +4,7 @@ const Discord = require ('discord.js')
 module.exports = {
   name: 'cleanup',
   aliases: ['clean', 'purge', 'wipe'],
-  description: 'Deletes up to 30 messages from Bots. Defaults to 10.',
+  description: 'Deletes up to 30 messages from bots and bot messages. Defaults to 10.',
   usage: '``?cleanup 25``',
   hidden: true,
   execute(bot, message, args) {
