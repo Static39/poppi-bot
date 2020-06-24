@@ -12,7 +12,6 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 sequelize.import('models/Gold');
 sequelize.import('models/Tags');
 sequelize.import('models/Profiles');
-sequelize.import('models/Songs');
 
 // Model syncing
 const force = process.argv.includes('--force') || process.argv.includes('-f');
