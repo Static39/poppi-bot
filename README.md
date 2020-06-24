@@ -48,9 +48,9 @@ npm install package.json
 2. Hit **Create App**
 
 3. Fill out the form with the following:
-- **Choose an API**: Dropbox API
-- **Choose the type of access you need**: App folder
-- **Name your app**: Whatever name you want
+    - **Choose an API**: Dropbox API
+    - **Choose the type of access you need**: App folder
+    - **Name your app**: Whatever name you want
 
 4. Copy the **App Key** and in config.json replace `your-dropbox-client-id` with the App Key you copied.
 
@@ -58,7 +58,7 @@ npm install package.json
 
 6. Head to [Dropbox Files](https://www.dropbox.com/home) and enter the Apps folder.
 
-7. Rename the folder inside to `Poppi` (It should be named after whatever you named your app).
+7. Rename the folder inside (It should be named after whatever you named your app) to `Poppi`.
 
 ## Usage
 WIP
