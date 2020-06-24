@@ -3,9 +3,9 @@ const fs = require('fs');
 module.exports = {
   name: 'moe',
   aliases: [],
-  description: 'This is a hidden command.',
+  description: 'Displays a moe picture.',
   usage: '``?moe``',
-  hidden: true,
+  hidden: false,
   execute(bot, message, args) {
     if (message.channel.type !== 'text') return;
 
