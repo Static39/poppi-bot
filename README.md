@@ -40,7 +40,7 @@ npm install package.json
 
 4. Enter your `poppi-bot` folder, open `config.json` with your editor of choice and replace `your-bot-token-here` with the token you copied.
 
-5. With `config.json` still open replace `your-discord-user-id` with your UserID (To find a UserID put a backslash before a mention, e.g. \\@Static).
+5. With `config.json` still open replace `your-discord-user-id` with your UserID (To find a UserID put a backslash before an @mention, e.g. \\@Static).
 
 ### Dropbox Application
 1. Go to [Dropbox App Console](https://www.dropbox.com/developers/apps) using your account or create a new one.
@@ -61,4 +61,7 @@ npm install package.json
 7. Rename the folder inside (It should be named after whatever you named your app) to `Poppi`.
 
 ## Usage
-WIP
+- The prefix is `?`. To get a list of commands type `?help`.
+- @Mentions can be substituted with usernames, e.g. `?avatar Squish`.
+- Many commands have aliases that can be used instead of the command name, e.g. `?avy @Squish`.
+- The `?remind` command still has some kinks, i.e No limit on reminder amount, reminders are cleared when bot restarts.
