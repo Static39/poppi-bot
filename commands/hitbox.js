@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 module.exports = {
     name: 'hitbox',
     aliases: ['hb', 'move'],
-    description: 'Displays the hitbox of a character\'s normal move in Smash Ultimate',
+    description: 'Displays the hitbox of a character\'s normal move in Smash Ultimate. Doesn\'t work with some characters.',
     usage: '``?hitbox mario utilt',
     hidden: false,
     async execute(_bot, message, args) {
