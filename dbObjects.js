@@ -11,6 +11,5 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 const Gold = sequelize.import('models/Gold');
 const Tags = sequelize.import('models/Tags');
 const Profiles = sequelize.import('models/Profiles');
-const Songs = sequelize.import('models/Songs');
 
-module.exports = { Gold, Tags, Profiles, Songs};
+module.exports = { Gold, Tags, Profiles};
