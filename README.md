@@ -61,7 +61,7 @@ npm install package.json
 7. Rename the folder inside (It should be named after whatever you named your app) to `Poppi`.
 
 ## Usage
-- The prefix is `?`. To get a list of commands type `?help`.
+- The prefix is `?` and can be changed in `config.json`. To get a list of commands type `?help`.
 - @Mentions can be substituted with usernames, e.g. `?avatar Squish`.
 - Many commands have aliases that can be used instead of the command name, e.g. `?avy @Squish`.
 - The `?remind` command still has some kinks, i.e No limit on reminder amount, reminders are cleared when bot restarts.
