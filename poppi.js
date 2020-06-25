@@ -1,10 +1,9 @@
-//Code by: Static15 4/27/2018 7:16PM
+//Code by: Static39 4/27/2018 7:16PM
 
 //Variable declaration
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
-//bot.jobs = new Discord.Collection();
 const fs = require('fs');
 const commandFiles = fs.readdirSync('./commands');
 const config = require('./config.json');
@@ -106,6 +105,7 @@ bot.targetFind = function target(msg, a) {
   };
 };
 
+// Checks number arg validity
 bot.numCheck = function check(n) {
   // Checks for argument
   if (!n) return;
@@ -113,10 +113,10 @@ bot.numCheck = function check(n) {
   // Checks for valid number
   if (Number.isNaN(n)) return false;
 
-  // Checks if the bet is a negative
+  // Checks if the number is a negative
   if (n < 0) return false;
 
-  // Checks if the bet is a whole number
+  // Checks if the number is a whole number
   if (n % 1 !== 0) return false;
 
   return true;
