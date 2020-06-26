@@ -1,11 +1,12 @@
 const config = require('../config.json');
-const ffmpeg = require('ffmpeg');
 const ytdl = require('ytdl-core');
 const fs = require('fs');
 const CronJob = require('cron').CronJob;
 const addHours = require('date-fns/addHours');
 const fetch = require('node-fetch');
 const Dropbox = require('dropbox').Dropbox;
+const ffmpeg = require('ffmpeg-static');
+const { exec } = require('child_process');
 
 module.exports = {
 	name: 'download',
@@ -15,9 +16,10 @@ module.exports = {
 	hidden: false,
 	async execute(_bot, message, args) {
 		if (message.channel.type !== 'text') return;
-		
+
 		// Checks if Dropbox client ID and token exist
 		if (!config.dbxClientId || !config.dbxToken) return message.channel.send('This command has not been setup.');
+		
 
 		if (!args[0]) return message.channel.send('Please give a valid YouTube link.');
 
@@ -76,29 +78,33 @@ module.exports = {
 				.pipe(fs.createWriteStream(`./assets/conversion/${vidId}.avi`).on('finish', async () => {
 					try {
 						// Converts video to mp3
-						var video = await new ffmpeg(`./assets/conversion/${vidId}.avi`);
+						let ffmpegArgs = [ffmpeg];
 
+
+						ffmpegArgs.push(`-i ./assets/conversion/${vidId}.avi`);
 						if (albumArt) {
-							video.addCommand('-i', `${albumArt.replace(/&.*/, '').trim()}`);
+							ffmpegArgs.push(`-i ${albumArt.replace(/&.*/, '').trim()}`);
 						}
-						video.addCommand('-map 0:1 -map 1:0');
-						video.addCommand('-id3v2_version', '3');
-						video.addCommand(`-metadata Title=\"${vidName}\" -metadata:s:v title="Album cover" -metadata:s:v comment="Cover (front)"`);
-						video.addCommand('-c:a', `${songFormat}`);
+						ffmpegArgs.push('-map 0:1 -map 1:0');
+						ffmpegArgs.push('-id3v2_version 3');
+						ffmpegArgs.push(`-metadata Title=\"${vidName}\" -metadata:s:v title="Album cover" -metadata:s:v comment="Cover (front)"`);
+						ffmpegArgs.push(`-c:a ${songFormat}`);
 						// Only sets bitrate if format is mp3
 						if (songFormat === 'mp3') {
-							video.addCommand('-b:a', '320k');
+							ffmpegArgs.push('-b:a 320k');
 						}
-						video.addCommand('-ar', '44100');
-						video.addCommand('-y');
-						video.save(`./assets/conversion/${vidId}.${songFormat}`, async (error, file) => {
+						ffmpegArgs.push('-ar 44100');
+						ffmpegArgs.push('-y');
+						ffmpegArgs.push(`./assets/conversion/${vidId}.${songFormat}`);
+						console.log(ffmpegArgs.join(' '));
+						exec(ffmpegArgs.join(' '), async (error) => {
 							if (error) {
 								console.log(error);
 								return message.channel.send('An error has occurred. Please try again later or contact Masterpon.');
 							}
 
 							// Reads the newly converted file
-							fs.readFile(file, async (err, data) => {
+							fs.readFile(`./assets/conversion/${vidId}.${songFormat}`, async (err, data) => {
 								if (err) {
 									console.log(error);
 									return message.channel.send('An error has occurred. Please try again later or contact Masterpon.');
@@ -124,7 +130,7 @@ module.exports = {
 											});
 										})
 
-										// Creates an hour link
+										// Creates a 4 hour link
 										const tempLink = await dbx.filesGetTemporaryLink({ path: `/${vidName.replace(/[/\\?%*:|"<>]/g, '-')}.${songFormat}` });
 
 										// Download link embed
