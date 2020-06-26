@@ -52,9 +52,9 @@ npm install package.json
     - **Choose the type of access you need**: App folder
     - **Name your app**: Whatever name you want
 
-4. Copy the **App Key** and in config.json replace `your-dropbox-client-id` with the App Key you copied.
+4. Copy the **App Key** and in config.json replace `null` in `"dbxClientId": null` with the App Key you copied. Make sure you put quotes on both ends of the key, e.g. `"dbxClientId":"abc123DEFG456"`.
 
-5. Scroll down to **OAuth 2**, hit **Generate access token** and copy the token. In `config.json` replace `your-dropbox-token` with your token.
+5. Scroll down to **OAuth 2**, hit **Generate access token** and copy the token. In `config.json` replace `null` in `"dbxToken": null` with your token (Making sure to surround with quotes).
 
 6. Head to [Dropbox Files](https://www.dropbox.com/home) and enter the Apps folder.
 
