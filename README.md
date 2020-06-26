@@ -14,6 +14,7 @@ Runs with [Discord.js](https://discord.js.org/) and [Node.js](https://nodejs.org
 
 ## Requirements
 * [Node.js](https://nodejs.org/) (v12.0 or greater)
+* [Git](https://git-scm.com/)
 * [Dropbox Developer App](https://www.dropbox.com/developers/apps) (Only if you want the YouTube conversion feature)
 
 ## Setup
@@ -26,9 +27,9 @@ git clone https://github.com/Static39/poppi-bot.git
 # Enter it
 cd poppi-bot
 ```
-2. Install [Node.js](https://nodejs.org/) if you haven't already and install the `package.json`:
+2. Install [Node.js](https://nodejs.org/) if you haven't already and install the `package.json` (Depending on your directory you may need to run as root/administrator):
 ```sh
-npm install package.json
+npm i
 ```
 
 ### Discord Application
