@@ -14,7 +14,10 @@ module.exports = {
 	usage: '``?download https://www.youtube.com/watch?v=TzqBFURAZDA flac``',
 	hidden: false,
 	async execute(_bot, message, args) {
-		if (message.channel.type !== 'text' && message.author.id !== '300804924705472514') return;
+		if (message.channel.type !== 'text') return;
+		
+		// Checks if Dropbox client ID and token exist
+		if (!config.dbxClientId || !config.dbxToken) return message.channel.send('This command has not been setup.');
 
 		if (!args[0]) return message.channel.send('Please give a valid YouTube link.');
 
