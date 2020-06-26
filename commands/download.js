@@ -96,7 +96,6 @@ module.exports = {
 						ffmpegArgs.push('-ar 44100');
 						ffmpegArgs.push('-y');
 						ffmpegArgs.push(`./assets/conversion/${vidId}.${songFormat}`);
-						console.log(ffmpegArgs.join(' '));
 						exec(ffmpegArgs.join(' '), async (error) => {
 							if (error) {
 								console.log(error);
