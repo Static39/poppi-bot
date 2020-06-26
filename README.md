@@ -31,6 +31,10 @@ cd poppi-bot
 ```sh
 npm i
 ```
+3. Initialize the database:
+```sh
+node dbInit.js
+```
 
 ### Discord Application
 1. Go to the [Discord Developer Portal](https://discord.com/developers/applications) and hit **New Application**.
