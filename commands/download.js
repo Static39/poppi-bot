@@ -124,7 +124,7 @@ module.exports = {
 											});
 										})
 
-										// Creates a 4 hour link
+										// Creates an hour link
 										const tempLink = await dbx.filesGetTemporaryLink({ path: `/${vidName.replace(/[/\\?%*:|"<>]/g, '-')}.${songFormat}` });
 
 										// Download link embed
