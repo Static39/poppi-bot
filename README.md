@@ -49,7 +49,8 @@ node dbInit.js
 
 6. Return to the Discord Developer portal and with your within you bot application copy the client ID.
 
-7. To invite the bot to your server paste this link in your browser `https://discord.com/api/oauth2/authorize?client_id=your-id-here&permissions=268692528&scope=bot` replacing `your-id-here` with the client ID you copied.
+7. To invite the bot to your server paste this link in your browser:\
+`https://discord.com/api/oauth2/authorize?client_id=your-id-here&permissions=268692528&scope=bot` replacing `your-id-here` with the client ID you copied.
 
 ### Dropbox Application
 1. Go to [Dropbox App Console](https://www.dropbox.com/developers/apps) using your account or create a new one.
