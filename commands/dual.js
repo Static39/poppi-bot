@@ -12,29 +12,29 @@ module.exports = {
     // Variables
     let target;
     let bet;
-    let requestText
-    const userData = await Gold.findOne({ where: { user_id: message.author.id } })
-    let userGold;
+    let requestText;
+    let targetName;
 
-    if (userData) {
-      userGold = userData.gold;
-    }
-    else {
-      userGold = 0;
-    }
+    // Checks if user is Masterpon
+    const name = bot.masterponCheck(message.author);
+    
+    // Fetches user data
+    const userData = await bot.goldCheck(Gold, message.author.id);
+    let userGold = userData.gold;
 
 
-    // Checks if the first argument is a user
+    // Checks if the first argument isn't a user
     if (bot.targetFind(message, args[0]) === null) {
       // If the first argument isn't a user check for a number
       if (!bot.numCheck(args[0])) {
         return message.channel.send('Please enter a valid user user')
       } else {
         bet = Number(args[0]);
+
         // Checks if user has enough gold
         if (bet > userGold) return message.channel.send('Not enough gold.');
         target = false;
-        requestText = ''
+        requestText = '';
       }
     }
 
@@ -54,12 +54,18 @@ module.exports = {
     }
 
 
-    message.channel.send(`${message.author.username} has requested a dual${requestText} for \`\`${bet}\`\`g!`)
+    message.channel.send(`${name} has requested a dual${requestText} for \`\`${bet}\`\`g!`)
     .then(() => {
       message.channel.awaitMessages(response => {
         // Checks if the response author is the same as message sender
         if (message.author.id !== response.author.id && response.author.bot === false) {
+
+          // If target is null sets target to message author
           target = target ? target : response.author;
+
+          // Checks if target is Masterpon
+          targetName = bot.masterponCheck(target);
+
           if (target === response.author && response.content.toLowerCase() === 'accept') {
             return true;
           }
@@ -71,19 +77,13 @@ module.exports = {
         errors: ['time'],
       })
       .then(async (collected) => {
-          const targetData = await Gold.findOne({ where: { user_id: collected.first().author.id } });
-          let targetGold;
-
-          if (targetData) {
-            targetGold = targetData.gold;
-          }
-          else {
-            targetGold = 0;
-          }
+          // Fetches target data
+          const targetData = await bot.goldCheck(Gold, collected.first().author.id);
+          let targetGold = targetData.gold;
 
           if (bet > targetGold) return message.channel.send('Not enough gold.');
 
-          const dualM = message.channel.send(`${target.username} accepted the dual!\nNow starting the dual...`, {
+          const dualM = await message.channel.send(`${targetName} accepted the dual!\nNow starting the dual...`, {
             files: [{
               attachment: './assets/dual.gif',
               name: 'dual.gif'
@@ -92,13 +92,13 @@ module.exports = {
           setTimeout(async () => {
             // Chooses winner
             if (Math.random() >= 0.5) {
-              message.channel.send(`${message.author.username} won the dual!`);
+              message.channel.send(`${name} won the dual!`);
 
               userGold += bet;
               targetGold -= bet;
             }
             else {
-              message.channel.send(`${collected.first().author.username} won the dual!`)
+              message.channel.send(`${bot.masterponCheck(collected.first().author)} won the dual!`);
 
               userGold -= bet;
               targetGold += bet;
