@@ -4,24 +4,30 @@ const config = require('../config.json');
 module.exports = {
   name: 'reload',
   aliases: ['re'],
-  description: 'Bot owner only. Reloads all commands',
-  usage: '``?reload``',
+  description: 'Bot owner only. Reloads all commands.',
+  usage: '``?reload gold``',
   hidden: true,
   execute(bot, message, args) {
   const user = message.author.id;
   if (user !== config.ownerID) return;
 
-  if(!args || args.length < 1) return message.reply("Must provide a command name to reload.");
-  // the path is relative to the *current folder*, so just ./filename.js
-  delete require.cache[require.resolve(`./${args[0]}.js`)];
+  const commandName = args[0];
+		const command = message.client.commands.get(commandName)
+			|| message.client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
-  const commandFiles = fs.readdirSync('C:/PoppiBot/commands');
-  for (const file of commandFiles) {
-    const command = require(`C:/PoppiBot/commands/${file}`);
-    bot.commands.set(command.name, command);
+		if (!command) {
+			return message.channel.send(`There is no command with name or alias \`${commandName}\`, ${message.author}!`);
+		}
 
-  }
+		delete require.cache[require.resolve(`./${command.name}.js`)];
 
-  message.reply(`The command ${args[0]} has been reloaded`);
+		try {
+			const newCommand = require(`./${command.name}.js`);
+			message.client.commands.set(newCommand.name, newCommand);
+			message.channel.send(`Command \`${command.name}\` was reloaded!`);
+		} catch (error) {
+			console.log(error);
+			message.channel.send(`There was an error while reloading a command \`${command.name}\`:\n\`${error.message}\``);
+		}
  },
 };

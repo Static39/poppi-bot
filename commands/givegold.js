@@ -1,4 +1,3 @@
-const config = require('../config.json');
 const { Gold } =  require('../dbObjects');
 
 module.exports = {
@@ -14,47 +13,26 @@ module.exports = {
   // Variable declaration
   const target = bot.targetFind(message, args[0]);
   const gift = Number(args[1]) || 0;
-  const user = message.author.id;
+  const user = message.author;
 
-  // Checks if it's Masterpon
-  let name;
-  if (message.author.id === config.ownerID) {
-    name = 'Masterpon';
-  } else {
-    name = message.author.username;
-  }
-
-  // Checks if the argument is a valid number
-  if (!bot.numCheck(args[1])) return message.channel.send('Please enter a valid number.');
 
   // Checks if user is valid
   if (target === message.author || target === null) {
     return message.channel.send('Please specify valid user.');
   };
-  const targetId = target.id;
-  // Checks if target is Masterpon
-  let name2;
-  if (target.id === config.ownerID) {
-    name2 = 'Masterpon';
-  } else {
-    name2 = target.username;
-  }
 
-  // Creates a user table if none exist
-  if(!await Gold.findOne({ where: {user_id: user } })) {
-    await Gold.create({
-      user_id: user,
-    });
-  }
-  if(!await Gold.findOne({ where: {user_id: targetId } })) {
-    await Gold.create({
-      user_id: targetId,
-    });
-  }
+  // Checks if the argument is a valid number
+  if (!bot.numCheck(args[1])) return message.channel.send('Please enter a valid number.');
+
+  // Checks if it's Masterpon
+  const name = bot.masterponCheck(user);
+
+  // Checks if target is Masterpon
+  const targetName = bot.masterponCheck(target);
 
   // Retrieves users' data
-  const userData = await Gold.findOne({ where: {user_id: user} });
-  const targetData = await Gold.findOne({ where: {user_id: targetId} });
+  const userData = await bot.goldCheck(Gold, user.id);
+  const targetData = await bot.goldCheck(Gold, target.id);
 
   // Sets gold variables
   let userGold = userData.gold;
@@ -71,12 +49,12 @@ module.exports = {
     await Gold.update({
       gold: userGold,
       },
-      { where: { user_id: user} });
+      { where: { user_id: user.id} });
 
     await Gold.update({
       gold: targetGold,
       },
-      { where: { user_id: targetId } });
+      { where: { user_id: target.id } });
   }
   catch (error) {
     console.log(error)
@@ -84,6 +62,6 @@ module.exports = {
   }
 
 
-  message.channel.send(`${target.username} has been given \`\`${gift}\`\` gold.`);
+  message.channel.send(`${targetName} has been given \`\`${gift}\`\` gold.`);
  },
 };

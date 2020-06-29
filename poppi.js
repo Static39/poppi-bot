@@ -1,4 +1,4 @@
-//Code by: Static39 4/27/2018 7:16PM
+//Code by: Static15 4/27/2018 7:16PM
 
 //Variable declaration
 const Discord = require('discord.js');
@@ -42,6 +42,7 @@ bot.on('message', async message => {
   if (message.content.toLowerCase() === 'oh? you\'re approaching me?') {
     message.channel.send('I can\'t beat the \\*\\*\\*\\* out of you without getting closer');
   }
+  //Pancakes
   if (message.content.toLowerCase().includes('delicious pancake')) {
     message.channel.send({
       files: ['./assets/pancakes.png']
@@ -87,15 +88,17 @@ bot.on('message', async message => {
 /*-- Function assignment --*/
 
 // Username check
-bot.targetFind = function target(msg, a) {
-  if (!a) return msg.author;
+// Takes a message object and string as arguments
+bot.targetFind = (msg, u) => {
+  // If username isn't provided returns the user who sent the message
+  if (!u) return msg.author;
 
   if (msg.mentions.users.first()) return msg.mentions.users.first();
 
   const users = msg.channel.members;
 
   const target = users.find(member => {
-    return member.user.username.toLowerCase() === a.toLowerCase()
+    return member.user.username.toLowerCase() === u.toLowerCase()
   });
 
   if (!target) {
@@ -105,19 +108,46 @@ bot.targetFind = function target(msg, a) {
   };
 };
 
-// Checks number arg validity
-bot.numCheck = function check(n) {
+// Checks for valid integers
+bot.numCheck = n => {
   // Checks for argument
   if (!n) return;
 
   // Checks for valid number
   if (Number.isNaN(n)) return false;
 
-  // Checks if the number is a negative
+  // Checks if the bet is a negative
   if (n < 0) return false;
 
-  // Checks if the number is a whole number
+  // Checks if the bet is a whole number
   if (n % 1 !== 0) return false;
 
   return true;
+}
+
+// Checks if user exists in database and adds them if not
+bot.goldCheck = async (g, userId) => {
+
+  // Checks if the user exists in the database
+  let userGold = await g.findOne({ where: { user_id: userId } });
+
+  // If not, a new entry is made
+  if (!userGold) {
+    userGold = await g.create({
+      user_id: userId,
+    });
+  }
+  
+  // Returns the user's data
+  return userGold;
+}
+
+// Checks if the user is Masterpon and returns a string accordingly
+bot.masterponCheck = user => {
+  if (user.id === config.ownerID) {
+    return 'Masterpon';
+  }
+  else {
+    return user.username;
+  }
 }

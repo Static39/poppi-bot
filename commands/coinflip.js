@@ -11,18 +11,14 @@ module.exports = {
   if (message.channel.type !=='text') return;
 
 
-  const user = message.author.id;
+  const user = message.author;
 
   // Checks if it's Masterpon
-  let name;
-  if (message.author.id === config.ownerID) {
-    name = 'Masterpon';
-  } else {
-    name = message.author.username;
-  }
+  const name = bot.masterponCheck(user);
 
   // Retrieves user data
-  const userData = await Gold.findOne({ where: { user_id: user } });
+  const userData = await bot.goldCheck(Gold, user.id);
+
   let betText;
   let guess;
 
@@ -70,7 +66,7 @@ module.exports = {
   try {
     await Gold.update({
       gold: gold,
-    }, { where: { user_id: user } });
+    }, { where: { user_id: user.id } });
   }
   catch(error) {
     console.log(error);

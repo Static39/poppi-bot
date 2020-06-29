@@ -1,5 +1,4 @@
 const { Gold } = require('../dbObjects');
-const config = require('../config.json');
 
 module.exports = {
   name: 'rps',
@@ -7,23 +6,18 @@ module.exports = {
   description: 'Plays a game of Rock, Paper, Scissors. You can also bet on results.',
   usage: '``?rps rock 150``',
   hidden: false,
-  async execute(_bot, message, args) {
+  async execute(bot, message, args) {
 
-    const user = message.author.id;
-    const nameUser = message.author;
-    const userData = await Gold.findOne({ where: { user_id: user } });
+    const user = message.author;
+
+    // Gets user data
+    const userData = await bot.goldCheck(Gold, user.id);
 
     const newChoice = args.shift();
     const botChoice = Math.floor((Math.random() * 3) + 1);
 
     // Checks if it's Masterpon
-    let name;
-    if (nameUser.id === config.ownerID) {
-      name = 'Masterpon';
-    }
-    else {
-      name = nameUser.username;
-    }
+    const name = bot.masterponCheck(user)
 
     if (!newChoice) return message.channel.send('Please choose ``rock``, ``paper`` or ``scissors``');
     let choice = newChoice.toLowerCase();
@@ -34,17 +28,17 @@ module.exports = {
     let finalText;
     let bet = Number(args);
     let gold = userData.gold;
+
     // Checks if the bet is a number
-    if (Number.isNaN(bet)) bet = 0;
-    // Checks if the bet is a negative
-    if (bet < 0) bet = 0;
-    // Checks if the bet is a whole number
-    if (bet % 1 !== 0) bet = 0;
+    if (!bot.numCheck(bet)) bet = 0;
+
     // Checks if you have enough gold for the bet
     if (gold < bet) return message.channel.send('You don\'t have that much gold.');
+
     let winCheck;
     let winString;
 
+    // Spaghetti code ahead. Needs to be redone at some point.
     switch (choice) {
     case 'r':
       if (botChoice === 1) {
@@ -108,7 +102,7 @@ module.exports = {
     try {
       await Gold.update({
         gold: gold,
-      }, { where: { user_id: user } });
+      }, { where: { user_id: user.id } });
     }
     catch(error) {
       console.log(error);
