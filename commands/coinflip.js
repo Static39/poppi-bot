@@ -26,19 +26,26 @@ module.exports = {
   if (args[0] === 'h' || args[0] === 'heads') {
     betText = args[1];
     guess = args[0];
-  }else if (args[0] === 't' || args[0] === 'tails') {
+  }
+  else if (args[0] === 't' || args[0] === 'tails') {
     betText = args[1];
     guess = args[0];
-  }else {
+  }
+  else {
     betText = args[0];
     guess = args[1];
   }
 
-  let bet = Number(betText);
+  let bet;
   let gold = userData.gold;
 
   // Checks for a real number
-  if (!bot.numCheck(args[0])) bet = 0;
+  if (!bot.numCheck(betText)){
+    bet = 0;
+  }
+  else {
+    bet = betText;
+  }
 
   // Checks if you have enough gold for the bet
   if (gold < bet) return message.channel.send(`${name} not have that much gold.`);
@@ -56,10 +63,12 @@ module.exports = {
     if (guess === 'h' || guess === 'heads') {
       message.channel.send(`${name} flipped Tails... ${name} lost \`\`${bet}\`\` gold.`);
       gold -= bet;
-    }else if (guess === 't' || guess === 'tails') {
+    }
+    else if (guess === 't' || guess === 'tails') {
       message.channel.send(`${name} flipped Tails! ${name} won \`\`${bet}\`\` gold!`);
       gold += bet;
-    }else message.channel.send(`${name} flipped Tails.`);
+    }
+    else message.channel.send(`${name} flipped Tails.`);
   }
 
   // Updates gold values
