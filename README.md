@@ -45,7 +45,7 @@ node dbInit.js
 
 4. Enter your `poppi-bot` folder, open `config.json` with your editor of choice and replace `your-bot-token-here` with the token you copied.
 
-5. With `config.json` still open replace `your-discord-user-id` with your UserID (To find a UserID put a backslash before an @mention, e.g. \\@Static).
+5. With `config.json` still open replace `your-discord-user-id` with your UserID (To find a UserID put a backslash before an @mention, e.g. `\@Static`).
 
 6. Return to the Discord Developer portal and with your within you bot application copy the client ID.
 
@@ -66,7 +66,7 @@ node dbInit.js
 
 5. Scroll down to **OAuth 2**, hit **Generate access token** and copy the token. In `config.json` replace `null` in `"dbxToken": null` with your token (Making sure to surround with quotes).
 
-6. Head to [Dropbox Files](https://www.dropbox.com/home) and enter the Apps folder.
+6. Head to [Dropbox Files](https://www.dropbox.com/home) and enter the **Apps** folder.
 
 7. Rename the folder inside (It should be named after whatever you named your app) to `Poppi`.
 
