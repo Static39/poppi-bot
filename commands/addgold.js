@@ -1,4 +1,3 @@
-const config = require('../config.json');
 const isSameDay = require('date-fns/isSameDay');
 const parseISO = require('date-fns/parseISO');
 const { Gold } =  require('../dbObjects');
@@ -9,32 +8,19 @@ module.exports = {
   description: 'Gives 300 gold every 24h.',
   usage: '``?addgold``',
   hidden: false,
-  async execute(_bot, message, _args) {
+  async execute(bot, message, _args) {
   if (message.channel.type !=='text') return;
 
-  const user = message.author.id;
+  const user = message.author;
 
   //Checks if it's Masterpon
-  let name;
-
-  if (message.author.id === config.ownerID) {
-    name = 'Masterpon';
-  } else {
-    name = message.author.username;
-  }
+  const name = bot.masterponCheck(user)
 
   let curDate = new Date();
   let curDateString = curDate.toISOString();
 
   //Creates a row for the user if none exist
-  if(!await Gold.findOne({ where: { user_id: user } })) {
-    await Gold.create({
-      user_id: user,
-    });
-  };
-
-  //Fetches data from database
-  const moneyTable = await Gold.findOne({ where: { user_id: user } });
+  const moneyTable = await bot.goldCheck(Gold, user.id);
 
   //Fetches user's gold
   let gold = moneyTable.gold;
@@ -61,7 +47,7 @@ module.exports = {
         gold: gold,
         last_collect: curDateString,
         },
-        { where: { user_id: user } });
+        { where: { user_id: user.id } });
     }
     catch (error) {
       console.log(error);
