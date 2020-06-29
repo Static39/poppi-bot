@@ -10,12 +10,12 @@ module.exports = {
     if (message.channel.type !== 'text') return;
 
     //Adds the pictures from the directory into an array
-    const pics = fs.readdirSync('./assets/Moe');
+    const pics = fs.readdirSync('./assets/moe');
     //Chooses a random number based on picture count
-    const randm = Math.floor(Math.random() * (pics.length + 1));
+    const randm = Math.floor(Math.random() * (pics.length));
 
     message.channel.send({
-      files: [`./assets/Moe/${pics[randm]}`]
+      files: [`./assets/moe/${pics[randm]}`]
     });
   },
 }
