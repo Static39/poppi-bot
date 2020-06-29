@@ -11,9 +11,12 @@ module.exports = {
     if (message.channel.type !== 'text') return;
     if (message.author.id !== config.ownerID) return message.channel.send('Only Masterpon can use this command.');
 
-    const count = args[0] || 10;
+    let count = args[0] || 10;
 
     if (!bot.numCheck(count) || count > 30) return message.channel.send('Please enter a number 30 or less.');
+    
+    //Adds 1 to count for initial message
+    count++;
 
     message.channel.messages.fetch({ limit: 100 })
     .then(msg => {
