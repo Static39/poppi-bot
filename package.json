@@ -22,7 +22,7 @@
     "ffmpeg-static": "^4.2.5",
     "node-cache": "^5.1.1",
     "node-fetch": "^2.6.0",
-    "npm": "^6.13.4",
+    "npm": "^6.14.6",
     "package-lock.json": "^1.0.0",
     "package.json": "^2.0.1",
     "sequelize": "^5.22.0",
