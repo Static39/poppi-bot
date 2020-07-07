@@ -30,6 +30,11 @@ module.exports = {
 			accessToken: config.dbxToken
 		})
 
+		// Checks if Dropbox storage space is full
+		const currentSpace = await dbx.usersGetSpaceUsage();
+
+		if (currentSpace.used > 1700000000) return message.channel.send('Not enough free space left. Please try again later.');
+
 		// Cuts parameters off URL if necessary
 		const link = args[0].replace(/&.*/, '').trim();
 		const regex1 = /https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9-_]{11}/gm;
@@ -135,7 +140,7 @@ module.exports = {
 										// Download link embed
 										const embed = {
 											"title": `${vidName}`,
-											"description": `[**__Download__**](${tempLink.link})`,
+											"description": `[__Download__](${tempLink.link})`,
 											"color": 10299826,
 											"timestamp": `${new Date}`,
 											"thumbnail": {
