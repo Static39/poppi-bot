@@ -13,7 +13,7 @@ module.exports = {
 
     const role = message.mentions.roles.first();
     const color = args[1];
-    if (!role || !args[1]) return;
+    if (!role || !args[1]) return message.channel.send('Please give a valid role.');
 
     role.setColor(color).then(() => {
       message.channel.send(`This role's color has been set to ${role.color}.`);
