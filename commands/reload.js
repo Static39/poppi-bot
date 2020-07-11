@@ -7,7 +7,7 @@ module.exports = {
   description: 'Bot owner only. Reloads all commands.',
   usage: '``?reload gold``',
   hidden: true,
-  execute(bot, message, args) {
+  execute(_bot, message, args) {
   const user = message.author.id;
   if (user !== config.ownerID) return;
 

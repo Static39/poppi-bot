@@ -4,7 +4,7 @@ module.exports = {
   description: '',
   usage: '',
   hidden: true,
-  execute(bot, message, args) {
+  execute(_bot, message, _args) {
     return message.channel.send(':bulb:')
   },
 };

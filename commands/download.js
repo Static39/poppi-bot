@@ -32,7 +32,6 @@ module.exports = {
 
 		// Checks if Dropbox storage space is full
 		const currentSpace = await dbx.usersGetSpaceUsage();
-
 		if (currentSpace.used > 1700000000) return message.channel.send('Not enough free space left. Please try again later.');
 
 		// Cuts parameters off URL if necessary

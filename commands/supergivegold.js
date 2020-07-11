@@ -34,7 +34,7 @@ module.exports = {
     // Adds gift
     targetGold += gift;
 
-    //Updates gold values
+    // Updates gold values
     try {
       await Gold.update({
         gold: targetGold,

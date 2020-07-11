@@ -1,9 +1,0 @@
-# Node modules
-node_modules/
-
-# Config files
-config.json
-data/
-
-# Development files
-*.code-workspace

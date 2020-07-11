@@ -15,13 +15,8 @@ module.exports = {
   const weapon = args.slice(1).join(' ');
   const picture = Math.floor(Math.random() * 3);
 
-  //Checks if it's Masterpon
-  let name;
-  if (message.author.id === config.ownerID) {
-    name = 'Masterpon';
-  } else {
-    name = message.author.username;
-  }
+  // Checks if it's Masterpon
+  const name = bot.masterponCheck(message.author);
 
   if (target === message.author || !target) {
     message.channel.send(`${name} is missing a target.\nTo attempt a kill use: \`\`?kill @target weapon\`\``);
@@ -32,17 +27,12 @@ module.exports = {
     return;
   }
 
-  //Checks if target is Masterpon
-  let name2;
-  if (target.id === config.ownerID) {
-    name2 = 'Masterpon';
-  } else {
-    name2 = target.username;
-  }
+  // Checks if target is Masterpon
+  const name2 = masterponCheck(target);
 
   message.channel.send(`Poppi will attempt to kill ${name2} with a \`\`${weapon}\`\``);
 
-  setTimeout(kill => {
+  setTimeout(() => {
     if (Math.random() < 0.4) {
       message.channel.send(`${name2} got away.`, {
         files: ['./assets/escape.gif']

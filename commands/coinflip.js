@@ -1,4 +1,3 @@
-const config = require('../config.json');
 const { Gold } =  require('../dbObjects');
 
 module.exports = {
@@ -54,10 +53,12 @@ module.exports = {
     if (guess === 'h' || guess === 'heads') {
       message.channel.send(`${name} flipped Heads! ${name} won \`\`${bet}\`\` gold!`);
       gold += bet;
-    }else if (guess === 't' || guess === 'tails') {
+    }
+    else if (guess === 't' || guess === 'tails') {
       message.channel.send(`${name} flipped Heads... ${name} lost \`\`${bet}\`\` gold.`);
       gold -= bet;
-    }else message.channel.send(`${name} flipped Heads.`);
+    }
+    else message.channel.send(`${name} flipped Heads.`);
 
   } else {
     if (guess === 'h' || guess === 'heads') {

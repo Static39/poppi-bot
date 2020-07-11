@@ -26,18 +26,7 @@ module.exports = {
   let va = userData.voiceActor;
   let anime = userData.anime;
 
-/*
-  const profile = bot.remProfile.get(message.author.id) || {
-    prfle: message.author.username,
-    avy: message.author.avatarURL,
-    mal: 'https://myanimelist.net/',
-    favChar: '``Not set``',
-    waifu: '``Not set``',
-    favVA: '``Not set``',
-    favAnime: '``Not set``'
-  };
-*/
-
+  
   switch (args[0]) {
     case 'mal':
       args.shift();

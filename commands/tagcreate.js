@@ -11,6 +11,7 @@ module.exports = {
 
 // Takes the first argument and uses it for the tag name.
   const tag = args.shift().toLowerCase();
+  
 // Takes the rest of the message and uses it for the content of the tag.
   const value = args.join(' ');
 
