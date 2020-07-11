@@ -15,7 +15,7 @@ module.exports = {
 
     if (!bot.numCheck(count) || count > 30) return message.channel.send('Please enter a number 30 or less.');
     
-    //Adds 1 to count for initial message
+    // Adds 1 to count for initial message
     count++;
 
     message.channel.messages.fetch({ limit: 100 })
@@ -43,8 +43,5 @@ module.exports = {
       console.log(error);
       message.channel.send('An error has occured. Please try again later or contact Masterpon.');
     });
-
-
-
   }
 }

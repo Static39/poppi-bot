@@ -250,6 +250,9 @@ module.exports = {
       case 80:
         chr = "Byleth";
         break;
+      case 81:
+        chr = "Min Min";
+        break;
       default:
         return message.channel.send("An error occured. Please contact Masterpon.");
       }

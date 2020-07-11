@@ -9,25 +9,25 @@ module.exports = {
   async execute(bot, message, args) {
     if (message.channel.type !== 'text') return;
 
-    //Declares User variable
+    // Declares User variable
     const userMention = bot.targetFind(message, args[0]);
 
-    //Sets avatar url
+    // Sets avatar url
     const avy = userMention.displayAvatarURL();
 
-    //Sets userId
+    // Sets userId
     const userID = userMention.id;
 
-    //Fetches user data from database
-    const userData = await Profiles.findOne({ where: { user_id: userID } })
+    // Fetches user data from database
+    const userData = await Profiles.findOne({ where: { user_id: userID } });
 
-    //Check if the user has a profile
+    // Check if the user has a profile
     if (!userData) {
-      return message.channel.send('This user has not setup a profile');
+      return message.channel.send('This user has not setup a profile.');
     };
 
 
-    //Declaration area
+    // Declaration area
     const profile = userMention.username;
     const mal = userData.myanimelist;
     const char = userData.protagonist;

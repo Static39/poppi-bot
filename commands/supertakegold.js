@@ -33,7 +33,7 @@ module.exports = {
     // Returns if value is less than 0
     if (targetGold < 0) return message.channel.send(`${name} not have that much gold.`);
 
-    //Updates gold values
+    // Updates gold values
     try {
       await Gold.update({
         gold: targetGold,

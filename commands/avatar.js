@@ -8,6 +8,7 @@ module.exports = {
     if (message.channel.type !=='text') return;
 
     const avatar = bot.targetFind(message, args[0]);
+    
     if (!avatar) {
       message.channel.send(message.author.displayAvatarURL());
     } else {

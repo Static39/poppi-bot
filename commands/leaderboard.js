@@ -19,6 +19,7 @@ module.exports = {
           return `${usr.user.username} - ${u.gold} :yen:`;
         }
       });
+
       // Filters out users that aren't in guild
       const usersFilt = users.filter(element => {
         if (element) return element;
@@ -28,6 +29,7 @@ module.exports = {
         const str = `#${index + 1} `;
         values.push(str.concat(element));
       });
+      
       // Message embed
       const embed = {
         "color": 10299826,

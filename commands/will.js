@@ -5,7 +5,8 @@ module.exports = {
   usage: '``?will Squish ever stop gambling?``',
   hidden: false,
   execute(_bot, message, args) {
-  const user = message.author.id;
+  if (message.channel.type !== 'text') return;
+  
   let answer;
 
   if (!args[0]) return;

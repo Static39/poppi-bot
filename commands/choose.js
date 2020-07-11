@@ -12,7 +12,9 @@ module.exports = {
     const choiceArray = joinedArgs.split(',');
 
     if (choiceArray.length > 10) return message.channel.send('Too many choices.');
+
     const botChoice = choiceArray[Math.floor(Math.random() * choiceArray.length)];
+    
     message.channel.send(botChoice);
   },
 };

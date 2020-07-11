@@ -6,14 +6,14 @@ module.exports = {
   hidden: false,
   execute(bot, message, args) {
 
-    //Makes sure the channel is in a server
+    // Makes sure the channel is in a server
     if (message.channel.type !== 'text') return;
 
-    //Gets the user object from the message and returns if not found
+    // Gets the user object from the message and returns if not found
     const target = bot.targetFind(message, args[0]);
     if (!target) return message.channel.send('Please specify a valid user.');
 
-    //Checks if already running
+    // Checks if already running
     if (bot.user.presence.status === 'idle') {
       return message.channel.send('Ping command is already running. Please wait for it to end before starting another.');
     }
@@ -26,8 +26,8 @@ module.exports = {
         }
     }
 
-    //Timer function
-    //PS: Make an effort to learn async/await and promises
+    // Timer function
+    // This function needs to be updated
     function timer(ms) {
       return new Promise(res => setTimeout(res, ms));
     }

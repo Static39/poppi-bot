@@ -9,15 +9,15 @@ const commandFiles = fs.readdirSync('./commands');
 const config = require('./config.json');
 
 
-//Adds the commands to a collection
+// Adds the commands to a collection
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
   bot.commands.set(command.name, command);
 }
-//Bot login
+// Bot login
 bot.login(config.token);
 
-//Eval stuff
+// Eval stuff
 const clean = text => {
   if (typeof (text) === "string")
     return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
@@ -34,29 +34,29 @@ fs.readdir('./events/', (err, files) => {
   });
 });
 
-//Starts the message listening event
+// Starts the message listening event
 bot.on('message', async message => {
 
-  //Hidden -
-  //Approaching me?
+  /*-- Hidden --*/
+  // Approaching me?
   if (message.content.toLowerCase() === 'oh? you\'re approaching me?') {
     message.channel.send('I can\'t beat the \\*\\*\\*\\* out of you without getting closer');
   }
-  //Pancakes
+  // Pancakes
   if (message.content.toLowerCase().includes('delicious pancake')) {
     message.channel.send({
       files: ['./assets/pancakes.png']
     });
   }
 
-  //Checks for bot users and non-command messages and exits if true
+  // Checks for bot users and non-command messages and exits if true
   if (message.author.bot || message.content.indexOf(config.prfx) !== 0) return;
 
-  //Variables
+  // Variables
   const args = message.content.slice(config.prfx.length).split(/ +/g);
   const cmdName = args.shift().toLowerCase();
 
-  //Eval
+  // Eval
   if (message.content.startsWith(config.prfx + "eval")) {
     if (message.author.id !== config.ownerID) return;
     try {
@@ -72,7 +72,7 @@ bot.on('message', async message => {
     }
   }
 
-  //Commands:
+  // Commands:
   const command = bot.commands.get(cmdName)
     || bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName));
   if (!command) return;
@@ -87,9 +87,10 @@ bot.on('message', async message => {
 
 /*-- Function assignment --*/
 
-// Username check
+/*- Username check -*/
 // Takes a message object and string as arguments
 bot.targetFind = (msg, u) => {
+
   // If username isn't provided returns the user who sent the message
   if (!u) return msg.author;
 
@@ -108,7 +109,7 @@ bot.targetFind = (msg, u) => {
   };
 };
 
-// Checks for valid integers
+/*- Checks for valid integers -*/
 bot.numCheck = n => {
   // Checks for argument
   if (!n) return;
@@ -125,7 +126,7 @@ bot.numCheck = n => {
   return true;
 }
 
-// Checks if user exists in database and adds them if not
+/*- Checks if user exists in database and adds them if not -*/
 bot.goldCheck = async (g, userId) => {
 
   // Checks if the user exists in the database
@@ -142,7 +143,7 @@ bot.goldCheck = async (g, userId) => {
   return userGold;
 }
 
-// Checks if the user is Masterpon and returns a string accordingly
+/*- Checks if the user is Masterpon and returns a string accordingly -*/
 bot.masterponCheck = user => {
   if (user.id === config.ownerID) {
     return 'Masterpon';

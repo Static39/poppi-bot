@@ -10,9 +10,9 @@ module.exports = {
 		const commands = bot.commands;
 		const data = [];
 		const avy = bot.user.displayAvatarURL();
-		//Lists all command if no argument is given
+		// Lists all commands if no argument is given
 		if (!args.length) {
-			//Filters out commands with hidden set to true
+			// Filters out commands with hidden set to true
 			let cmdArray = commands.filter(element => {
 				return !element.hidden;
 			}).map(command => {
@@ -24,7 +24,7 @@ module.exports = {
 				"title": "Poppi",
 				"description": "Poppi is a bot still in the beta stage.\n Use ``?help command`` for more information on a specific command.",
 				"color": 10299826,
-				"timestamp": "new Date",
+				"timestamp": `${new Date}`,
 				"footer": {
 					"text": "PoppiBot"
 				},
@@ -51,7 +51,7 @@ module.exports = {
 				});
 		}
 		else {
-			//Checks if the specified command exists
+			// Checks if the specified command exists
 			if (!commands.has(args[0])) {
 				return message.reply('That is not a valid command.');
 			}
@@ -59,7 +59,8 @@ module.exports = {
 			const command = commands.get(args[0]);
 
 			data.push(`**Name:** ${command.name}`);
-			//Only writes to the text fields if the data exists
+			
+			// Only writes to the text fields if the data exists
 			if (command.description) data.push(`**Description:** ${command.description}`);
 			if (command.aliases) data.push(`**Aliases:** ${command.aliases.join(', ')}\n`);
 			if (command.usage) data.push(`**Usage:** ${command.usage}`);

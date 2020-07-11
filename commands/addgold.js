@@ -13,26 +13,26 @@ module.exports = {
 
   const user = message.author;
 
-  //Checks if it's Masterpon
+  // Checks if it's Masterpon
   const name = bot.masterponCheck(user)
 
   let curDate = new Date();
   let curDateString = curDate.toISOString();
 
-  //Creates a row for the user if none exist
+  // Creates a row for the user if none exist
   const moneyTable = await bot.goldCheck(Gold, user.id);
 
-  //Fetches user's gold
+  // Fetches user's gold
   let gold = moneyTable.gold;
 
-  //Checks if the time is up
+  // Checks if the time is up
   const result = isSameDay(parseISO(moneyTable.last_collect), curDate);
 
   if (!result) {
 
     gold += 300;
 
-    //Bonus gold chance
+    // Bonus gold chance
     const chance = Math.floor(Math.random() * (20) + 1);
     if (chance === 1) {
       gold += 1200;
@@ -41,7 +41,7 @@ module.exports = {
       message.channel.send(`${name} has been given 300g. ${name} have \`\`${gold}g\`\``);
     }
 
-    //Updates the table
+    // Updates the table
     try {
       await Gold.update({
         gold: gold,
