@@ -44,7 +44,7 @@ module.exports = {
     bet = 0;
   }
   else {
-    bet = betText;
+    bet = Number(betText);
   }
 
   // Checks if you have enough gold for the bet
