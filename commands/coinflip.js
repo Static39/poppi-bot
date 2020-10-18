@@ -4,7 +4,7 @@ module.exports = {
   name: 'coinflip',
   aliases: ['cf', 'flip'],
   description: 'Flips a coin you can bet on. Flipping without betting just displays heads or tails.',
-  usage: '``cf 100 t``',
+  usage: '``?cf 100 t\n?coinflip tails all``',
   hidden: false,
   async execute(bot, message, args) {
   if (message.channel.type !=='text') return;
@@ -38,8 +38,13 @@ module.exports = {
   let bet;
   let gold = userData.gold;
 
+  
+  // Checks if the user wants to bet all their gold
+  if (betText === 'max' || betText === 'all'){
+    bet = gold;
+  }
   // Checks for a real number
-  if (!bot.numCheck(betText)){
+  else if (!bot.numCheck(betText)) {
     bet = 0;
   }
   else {

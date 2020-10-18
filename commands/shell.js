@@ -12,12 +12,11 @@ module.exports = {
 
     const shellCmd = args.join(' ') || 'ls';
     try {
-      const output = execSync(shellCmd, { encoding: 'utf-8' })  // the default is 'buffer'
-      console.log('Output was:\n', output);
-      await message.channel.send(`${output}`, { split: true });
+      const output = execSync(shellCmd, { encoding: 'utf-8' });
+      await message.channel.send(`${output}`, { split: true, code: 'shell' });
     }
     catch(error) {
-      console.log(error);
+      message.channel.send(`ERROR:\n${error.stderr}`, { split: true, code: 'shell' });
     }
   }
 }

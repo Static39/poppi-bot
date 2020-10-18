@@ -17,13 +17,6 @@ for (const file of commandFiles) {
 // Bot login
 bot.login(config.token);
 
-// Eval stuff
-const clean = text => {
-  if (typeof (text) === "string")
-    return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
-  else
-    return text;
-}
 
 fs.readdir('./events/', (err, files) => {
   if (err) return console.error(err);
@@ -56,7 +49,15 @@ bot.on('message', async message => {
   const args = message.content.slice(config.prfx.length).split(/ +/g);
   const cmdName = args.shift().toLowerCase();
 
+
   // Eval
+  const clean = text => {
+    if (typeof (text) === "string")
+      return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+    else
+      return text;
+  }
+
   if (message.content.startsWith(config.prfx + "eval")) {
     if (message.author.id !== config.ownerID) return;
     try {
@@ -68,7 +69,7 @@ bot.on('message', async message => {
 
       message.channel.send(clean(evaled), { code: "xl" });
     } catch (err) {
-      message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+      message.channel.send(`\`ERROR\`\n${clean(err)}`, { split: true, code: 'xl' });
     }
   }
 
@@ -138,7 +139,7 @@ bot.goldCheck = async (g, userId) => {
       user_id: userId,
     });
   }
-  
+
   // Returns the user's data
   return userGold;
 }
