@@ -16,8 +16,6 @@ module.exports = {
     const newChoice = args.shift();
     const botChoice = Math.floor((Math.random() * 3) + 1);
 
-    console.log(botChoice);
-
     // Checks if it's Masterpon
     const name = bot.masterponCheck(user)
 
