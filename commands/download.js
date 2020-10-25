@@ -55,7 +55,14 @@ module.exports = {
 		}
 
 		// Gets video information
-		const videoInfo = await ytdl.getInfo(link);
+		let videoInfo;
+		try {
+			videoInfo = await ytdl.getInfo(link);
+		}
+		catch (error) {
+			console.log(error);
+			return message.channel.send('An error has occurred. Please try again later or contact Masterpon.');
+		}
 
 		// Gets the last thumbnail URL in the array
 		const lastIndex = videoInfo.player_response.videoDetails.thumbnail.thumbnails.length - 1;
