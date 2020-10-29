@@ -17,7 +17,7 @@
   "dependencies": {
     "cron": "^1.8.2",
     "date-fns": "^2.14.0",
-    "discord.js": "^12.2.0",
+    "discord.js": "^12.4.1",
     "dropbox": "^5.1.0",
     "ffmpeg-static": "^4.2.7",
     "node-cache": "^5.1.1",

@@ -1,9 +1,9 @@
 //Code by: Static15 4/27/2018 7:16PM
 
 //Variable declaration
-const Discord = require('discord.js');
-const bot = new Discord.Client();
-bot.commands = new Discord.Collection();
+const { Client, Intents, Collection } = require('discord.js');
+const bot = new Client({ ws: { intents: Intents.ALL } });
+bot.commands = new Collection();
 const fs = require('fs');
 const commandFiles = fs.readdirSync('./commands');
 const config = require('./config.json');
