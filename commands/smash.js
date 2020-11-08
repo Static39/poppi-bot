@@ -253,6 +253,9 @@ module.exports = {
       case 81:
         chr = "Min Min";
         break;
+      case 82:
+        chr = "Steve";
+        break;
       default:
         return message.channel.send("An error occured. Please contact Masterpon.");
       }
