@@ -20,7 +20,7 @@ module.exports = {
 		// Checks if Dropbox client ID and token exist
 		if (!config.dbxClientId || !config.dbxToken) return message.channel.send('This command has not been setup.');
 		
-
+		// Checks for an argument
 		if (!args[0]) return message.channel.send('Please give a valid YouTube link.');
 
 		// Initiates a new Dropbox instance
@@ -85,7 +85,7 @@ module.exports = {
 			});
 
 		try {
-			ytdl(link)
+			ytdl(link, { filter: 'audio', quality: 'highestaudio' })
 				.pipe(fs.createWriteStream(`./assets/conversion/${vidId}.avi`).on('finish', async () => {
 					try {
 						// Converts video to mp3
@@ -96,7 +96,7 @@ module.exports = {
 						if (albumArt) {
 							ffmpegArgs.push(`-i ${albumArt.replace(/&.*/, '').trim()}`);
 						}
-						ffmpegArgs.push('-map 0:1 -map 1:0');
+						ffmpegArgs.push('-map 0:0 -map 1:0');
 						ffmpegArgs.push('-id3v2_version 3');
 						ffmpegArgs.push(`-metadata Title=\"${vidName}\" -metadata:s:v title="Album cover" -metadata:s:v comment="Cover (front)"`);
 						ffmpegArgs.push(`-c:a ${songFormat}`);
@@ -167,6 +167,7 @@ module.exports = {
 							fs.unlink(`./assets/conversion/${vidId}.avi`, error => {
 								if (error) console.log(error);
 							});
+							
 							fs.unlink(`./assets/conversion/${vidId}.${songFormat}`, error => {
 								if (error) console.log(error);
 							});
