@@ -35,19 +35,10 @@ module.exports = {
 		if (currentSpace.used > 1700000000) return message.channel.send('Not enough free space left. Please try again later.');
 
 		// Cuts parameters off URL if necessary
-		const link = args[0].replace(/&.*/, '').trim();
+		const link = args[0].replace(/\n/g, '').replace(/&.*/g, '').trim();
 		const regex1 = /https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9-_]{11}/gm;
 		const regex2 = /https:\/\/youtu\.be\/[a-zA-Z0-9-_]{11}/gm;
 		const regex3 = /https:\/\/m\.youtube\.com\/watch\?v=[a-zA-Z0-9-_]{11}/gm;
-
-		// Checks for quality arg
-		let songFormat;
-
-		if (args[1] === 'flac') songFormat = 'flac';
-		else if(args[1] === 'mp3') songFormat = 'mp3';
-		else {
-			songFormat = 'mp3';
-		}
 
 		// Checks for valid URL
 		if (!regex1.test(link) && !regex2.test(link) && !regex3.test(link)) {
@@ -96,17 +87,14 @@ module.exports = {
 						if (albumArt) {
 							ffmpegArgs.push(`-i ${albumArt.replace(/&.*/, '').trim()}`);
 						}
-						ffmpegArgs.push('-map 0:0 -map 1:0');
+						ffmpegArgs.push('-map 0:a -map 1:0');
 						ffmpegArgs.push('-id3v2_version 3');
 						ffmpegArgs.push(`-metadata Title=\"${vidName}\" -metadata:s:v title="Album cover" -metadata:s:v comment="Cover (front)"`);
-						ffmpegArgs.push(`-c:a ${songFormat}`);
-						// Only sets bitrate if format is mp3
-						if (songFormat === 'mp3') {
-							ffmpegArgs.push('-b:a 320k');
-						}
+						ffmpegArgs.push('-c:a mp3');
+						ffmpegArgs.push('-b:a 320k');
 						ffmpegArgs.push('-ar 44100');
 						ffmpegArgs.push('-y');
-						ffmpegArgs.push(`./assets/conversion/${vidId}.${songFormat}`);
+						ffmpegArgs.push(`./assets/conversion/${vidId}.mp3`);
 						exec(ffmpegArgs.join(' '), async (error) => {
 							if (error) {
 								console.log(error);
@@ -114,7 +102,7 @@ module.exports = {
 							}
 
 							// Reads the newly converted file
-							fs.readFile(`./assets/conversion/${vidId}.${songFormat}`, async (err, data) => {
+							fs.readFile(`./assets/conversion/${vidId}.mp3`, async (err, data) => {
 								if (err) {
 									console.log(error);
 									return message.channel.send('An error has occurred. Please try again later or contact Masterpon.');
@@ -122,14 +110,14 @@ module.exports = {
 								// Uploads the converted file
 								dbx.filesUpload({
 									contents: data,
-									path: `/${vidName.replace(/[/\\?%*:|"<>]/g, '-')}.${songFormat}`,
+									path: `/${vidName.replace(/[/\\?%*:|"<>]/g, '-')}.mp3`,
 									mute: true,
 									mode: 'overwrite'
 								})
 									.then(async () => {
 										// Sets up a cron job to delete after 1 hours
 										const deleteJob = new CronJob(expireDate, function() {
-											dbx.filesDeleteV2({ path: `/${vidName.replace(/[/\\?%*:|"<>]/g, '-')}.${songFormat}`})
+											dbx.filesDeleteV2({ path: `/${vidName.replace(/[/\\?%*:|"<>]/g, '-')}.mp3`})
 											.then(() => {
 												this.stop();
 											})
@@ -141,7 +129,7 @@ module.exports = {
 										})
 
 										// Creates a 4 hour link
-										const tempLink = await dbx.filesGetTemporaryLink({ path: `/${vidName.replace(/[/\\?%*:|"<>]/g, '-')}.${songFormat}` });
+										const tempLink = await dbx.filesGetTemporaryLink({ path: `/${vidName.replace(/[/\\?%*:|"<>]/g, '-')}.mp3` });
 
 										// Download link embed
 										const embed = {
@@ -161,14 +149,14 @@ module.exports = {
 										return message.channel.send('An error has occurred. Please try again later or contact Masterpon.');
 									});
 							});
-							message.channel.stopTyping();
+							message.channel.stopTyping(true);
 
 							// Deletes files after uploading
 							fs.unlink(`./assets/conversion/${vidId}.avi`, error => {
 								if (error) console.log(error);
 							});
 							
-							fs.unlink(`./assets/conversion/${vidId}.${songFormat}`, error => {
+							fs.unlink(`./assets/conversion/${vidId}.mp3`, error => {
 								if (error) console.log(error);
 							});
 						});
@@ -177,6 +165,7 @@ module.exports = {
 						console.log(e.code);
 						console.log(e.msg);
 						console.log(e);
+						message.channel.stopTyping(true);
 						return message.channel.send('An error has occurred. Please try again later or contact Masterpon.');
 					}
 				})
@@ -185,6 +174,7 @@ module.exports = {
 		// ytdl or writeStream error
 		catch (error) {
 			console.log(error);
+			message.channel.stopTyping(true);
 			return message.channel.send('An error has occurred. Please try again later or contact Masterpon.');
 		}
 
