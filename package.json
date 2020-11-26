@@ -27,6 +27,6 @@
     "package.json": "^2.0.1",
     "sequelize": "^5.22.0",
     "sqlite3": "^4.2.0",
-    "ytdl-core": "^4.0.1"
+    "ytdl-core": "^4.0.5"
   }
 }

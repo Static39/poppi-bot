@@ -4,7 +4,7 @@ module.exports = {
   name: 'taglist',
   aliases: ['tl'],
   description: 'Displays all tags.',
-  usage: '``?taglist``',
+  usage: '`?taglist`',
   hidden: false,
   async execute(_bot, message, _args) {
   if (message.channel.type !=='text') return;

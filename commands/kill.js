@@ -4,7 +4,7 @@ module.exports = {
   name: 'kill',
   aliases: [],
   description: 'Attempts to kill a user with a specified weapon.',
-  usage: '``?kill @yaoiOnIce Icicle``',
+  usage: '`?kill @yaoiOnIce Icicle`',
   hidden: false,
   execute(bot, message, args) {
 

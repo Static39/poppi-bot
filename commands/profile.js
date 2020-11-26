@@ -4,7 +4,7 @@ module.exports = {
   name: 'profile',
   aliases: ['p'],
   description: 'Displays a user\'s profile. Displays yours if no user is specified.',
-  usage: '``?profile @SuperOtaku``',
+  usage: '`?profile @SuperOtaku`',
   hidden: false,
   async execute(bot, message, args) {
     if (message.channel.type !== 'text') return;

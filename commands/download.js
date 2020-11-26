@@ -35,7 +35,7 @@ module.exports = {
 		if (currentSpace.used > 1700000000) return message.channel.send('Not enough free space left. Please try again later.');
 
 		// Cuts parameters off URL if necessary
-		const link = args[0].replace(/\n/g, '').replace(/&.*/g, '').trim();
+		const link = args[0].replace(/\n/gm, '').replace(/&.*/gm, '').trim();
 		const regex1 = /https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9-_]{11}/gm;
 		const regex2 = /https:\/\/youtu\.be\/[a-zA-Z0-9-_]{11}/gm;
 		const regex3 = /https:\/\/m\.youtube\.com\/watch\?v=[a-zA-Z0-9-_]{11}/gm;

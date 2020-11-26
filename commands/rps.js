@@ -4,7 +4,7 @@ module.exports = {
   name: 'rps',
   aliases: [],
   description: 'Plays a game of Rock, Paper, Scissors. You can also bet on results.',
-  usage: '``?rps rock 150``',
+  usage: '`?rps rock 150`',
   hidden: false,
   async execute(bot, message, args) {
 
@@ -19,7 +19,7 @@ module.exports = {
     // Checks if it's Masterpon
     const name = bot.masterponCheck(user)
 
-    if (!newChoice) return message.channel.send('Please choose ``rock``, ``paper`` or ``scissors``');
+    if (!newChoice) return message.channel.send('Please choose `rock`, `paper` or `scissors`');
     let choice = newChoice.toLowerCase();
     if (choice === 'rock') choice = 'r';
     if (choice === 'paper') choice = 'p';
@@ -83,16 +83,16 @@ module.exports = {
       }
       break;
     default:
-      message.channel.send('Please choose: ``rock``, ``paper`` or ``scissors``.');
+      message.channel.send('Please choose: `rock`, `paper` or `scissors`.');
 
     }
     if (bet > 0 && winCheck === 0) {
       gold -= bet;
-      finalText = winString.concat(`\nLost \`\`${bet}\`\` gold.`);
+      finalText = winString.concat(`\nLost \`${bet}\` gold.`);
     }
     else if (bet > 0 && winCheck === 1) {
       gold += bet;
-      finalText = winString.concat(`\nWon \`\`${bet}\`\` gold.`);
+      finalText = winString.concat(`\nWon \`${bet}\` gold.`);
     }
     else {
       finalText = winString;

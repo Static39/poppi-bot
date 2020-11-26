@@ -4,7 +4,7 @@ module.exports = {
   name: 'editprofile',
   aliases: ['profileedit', 'ep'],
   description: 'Edits your profile. The different options are:\nmal\nprotagonist\nwaifu\nva\nanime',
-  usage: '``?editprofile protagonist Ryuko Matoi``',
+  usage: '`?editprofile protagonist Ryuko Matoi`',
   hidden: false,
   async execute(_bot, message, args) {
   if (message.channel.type !=='text') return;

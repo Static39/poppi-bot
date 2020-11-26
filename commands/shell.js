@@ -5,7 +5,7 @@ module.exports = {
   name: 'shell',
   aliases: [],
   description: 'Runs a command in the terminal.',
-  usage: '``?shell ls``',
+  usage: '`?shell ls`',
   hidden: true,
   async execute(_bot, message, args) {
     if (message.author.id !== config.ownerID) return;

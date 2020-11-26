@@ -2,7 +2,7 @@ module.exports = {
   name: 'smash',
   aliases: ['ssbu'],
   description: 'Chooses a random SSBU character.',
-  usage: '``?smash``',
+  usage: '`?smash`',
   hidden: false,
   execute(_bot, message, _args) {
 

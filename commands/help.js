@@ -1,10 +1,8 @@
-const { prfx } = require('../config.json');
-
 module.exports = {
 	name: 'help',
 	description: 'List all of Poppi\'s commands or info about a specific command.',
 	aliases: ['h', 'commands'],
-	usage: '``?help command``',
+	usage: '`?help command`',
 	hidden: false,
 	execute(bot, message, args) {
 		const commands = bot.commands;

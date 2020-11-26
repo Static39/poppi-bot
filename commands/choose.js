@@ -2,7 +2,7 @@ module.exports = {
   name: 'choose',
   aliases: ['choice', 'pick'],
   description: 'Chooses between given options. Split options with an apostrophe. Can take up to 10 options.',
-  usage: '``?choose Poppi a, Poppi QT, Poppi QT Pi``',
+  usage: '`?choose Poppi a, Poppi QT, Poppi QT Pi`',
   hidden: false,
   execute(_bot, message, args) {
     // Makes comand only available in text channel

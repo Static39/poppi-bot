@@ -4,7 +4,7 @@ module.exports = {
   name: 'tag',
   aliases: ['t'],
   description: 'Displays a tag.',
-  usage: '``?tag theTag``',
+  usage: '`?tag theTag`',
   hidden: false,
   async execute(_bot, message, args) {
   if (message.channel.type !=='text') return;

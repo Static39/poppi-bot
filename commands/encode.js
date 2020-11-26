@@ -5,7 +5,7 @@ module.exports = {
     name: 'encode',
     aliases: [],
     description: 'Encodes zero-width hidden messages',
-    usage: '``?encode I\'m a normal message. <-> Hidden message``',
+    usage: '`?encode I\'m a normal message. <-> Hidden message`',
     hidden: true,
     async execute(_bot, message, args) {
         if (message.author.id !== config.ownerID) return;

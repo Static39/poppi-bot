@@ -4,7 +4,7 @@ module.exports = {
   name: 'tagdelete',
   aliases: ['deletetag', 'td'],
   description: 'Deletes a tag.',
-  usage: '``?tagdelete theTag``',
+  usage: '`?tagdelete theTag`',
   hidden: false,
   async execute(_bot, message, args) {
   if (message.channel.type !=='text') return;
@@ -13,6 +13,6 @@ module.exports = {
   const rowCount = await Tags.destroy({ where: { name: tag } });
   if (!rowCount) return message.reply('Tag does not exist.');
 
-  message.channel.send(`\`\`${tag}\`\` has been deleted.`);
+  message.channel.send(`\`${tag}\` has been deleted.`);
  },
 };

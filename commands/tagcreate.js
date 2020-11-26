@@ -4,7 +4,7 @@ module.exports = {
   name: 'tagcreate',
   aliases: ['createtag', 'tc', 'ct'],
   description: 'Creates a tag.',
-  usage: '``?tagcreate theTag Why does this tag exist?``',
+  usage: '`?tagcreate theTag Why does this tag exist?`',
   hidden: false,
   async execute(_bot, message, args) {
   if (message.channel.type !=='text') return;
@@ -26,6 +26,6 @@ module.exports = {
     content: value,
   });
 
-  message.channel.send(`The tag \`\`${tag}\`\` has been created.`);
+  message.channel.send(`The tag \`${tag}\` has been created.`);
  },
 };

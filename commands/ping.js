@@ -2,7 +2,7 @@ module.exports = {
   name: 'ping',
   aliases: ['spam', 'troll'],
   description: 'Pings a user until they come online or for 10 pings. You can stop it by typing \`\`stop\`\`.',
-  usage: '``?ping @Kazuma``',
+  usage: '`?ping @Kazuma`',
   hidden: false,
   execute(bot, message, args) {
 

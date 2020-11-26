@@ -5,7 +5,7 @@ module.exports = {
     name: 'decode',
     aliases: [],
     description: 'Decodes zero-width hidden messages.',
-    usage: '``?decode Secret Message``',
+    usage: '`?decode Secret Message`',
     hidden: true,
     async execute(_bot, message, args) {
         if (message.author.id !== config.ownerID) return;

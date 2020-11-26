@@ -6,7 +6,7 @@ module.exports = {
   name: 'addgold',
   aliases: ['ag'],
   description: 'Gives 300 gold every 24h.',
-  usage: '``?addgold``',
+  usage: '\`?addgold\`',
   hidden: false,
   async execute(bot, message, _args) {
   if (message.channel.type !=='text') return;
@@ -38,7 +38,7 @@ module.exports = {
       gold += 1200;
       message.channel.send(`${name} got the bonus! ${name} has been given 1500g.`);
     } else {
-      message.channel.send(`${name} has been given 300g. ${name} have \`\`${gold}g\`\``);
+      message.channel.send(`${name} has been given 300g. ${name} have \`${gold}g\``);
     }
 
     // Updates the table

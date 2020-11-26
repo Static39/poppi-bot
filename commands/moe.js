@@ -4,7 +4,7 @@ module.exports = {
   name: 'moe',
   aliases: [],
   description: 'Displays a moe picture.',
-  usage: '``?moe``',
+  usage: '`?moe`',
   hidden: false,
   execute(_bot, message, _args) {
     if (message.channel.type !== 'text') return;

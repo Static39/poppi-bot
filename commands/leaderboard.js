@@ -11,7 +11,7 @@ module.exports = {
     // Fetches gold table
     const data = await Gold.findAll({ attributes: ['user_id', 'gold'], limit: 15, order: [['gold', 'DESC'],], });
     try {
-
+      // Gets guild members
       const gUsers = await message.guild.members.fetch();
       let users = await data.map(u => {
         if (gUsers.has(u.user_id)) {

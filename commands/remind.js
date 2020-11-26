@@ -7,7 +7,7 @@ module.exports = {
   name: 'remind',
   aliases: ['reminder', 'rm'],
   description: 'Sets a reminder message to be sent at the specified date up to a year in the future.',
-  usage: '\`\`?remind \"wake up\" 2mo 3w 5d 3h 8m 2s \`\`',
+  usage: '\`?remind \"wake up\" 2mo 3w 5d 3h 8m 2s \`',
   hidden: false,
   execute(bot, message, args) {
     if (message.channel.type !== 'text') return;

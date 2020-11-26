@@ -4,7 +4,7 @@ const { Gold } =  require('../dbObjects');
 module.exports = {
   name: 'supergivegold',
   aliases: ['sgg'],
-  usage: '``?supergivegold @Tsukasa 1500``',
+  usage: '`?supergivegold @Tsukasa 1500`',
   hidden: true,
   async execute(bot, message, args) {
     if (message.channel.type !=='text') return;
@@ -46,7 +46,7 @@ module.exports = {
       message.channel.send('An error has occured. Please try again or contact Masterpon.');
     }
 
-    message.channel.send(`${name} has been given \`\`${gift}\`\` gold.`);
+    message.channel.send(`${name} has been given \`${gift}\` gold.`);
 
 
 

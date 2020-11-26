@@ -4,7 +4,7 @@ module.exports = {
   name: 'dual',
   aliases: ['fight', 'shoubu'],
   description: 'Challenges a user to a dual. User can be specified or omitted. Bets can also be placed.',
-  usage: '``?dual @Kirito 1000``',
+  usage: '`?dual @Kirito 1000`',
   hidden: false,
   async execute(bot, message, args) {
     if (message.channel.type != 'text') return
@@ -54,7 +54,7 @@ module.exports = {
     }
 
 
-    message.channel.send(`${name} has requested a dual${requestText} for \`\`${bet}\`\`g!`)
+    message.channel.send(`${name} has requested a dual${requestText} for \`${bet}\`g!`)
     .then(() => {
       message.channel.awaitMessages(response => {
         // Checks if the response author is the same as message sender

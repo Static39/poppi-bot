@@ -4,7 +4,7 @@ module.exports = {
   name: 'coinflip',
   aliases: ['cf', 'flip'],
   description: 'Flips a coin you can bet on. Flipping without betting just displays heads or tails.',
-  usage: '``?cf 100 t\n?coinflip tails all``',
+  usage: '`?cf 100 t\n?coinflip tails all`',
   hidden: false,
   async execute(bot, message, args) {
   if (message.channel.type !=='text') return;
@@ -56,22 +56,22 @@ module.exports = {
 
   if (Math.random() >= 0.5) {
     if (guess === 'h' || guess === 'heads') {
-      message.channel.send(`${name} flipped Heads! ${name} won \`\`${bet}\`\` gold!`);
+      message.channel.send(`${name} flipped Heads! ${name} won \`${bet}\` gold!`);
       gold += bet;
     }
     else if (guess === 't' || guess === 'tails') {
-      message.channel.send(`${name} flipped Heads... ${name} lost \`\`${bet}\`\` gold.`);
+      message.channel.send(`${name} flipped Heads... ${name} lost \`${bet}\` gold.`);
       gold -= bet;
     }
     else message.channel.send(`${name} flipped Heads.`);
 
   } else {
     if (guess === 'h' || guess === 'heads') {
-      message.channel.send(`${name} flipped Tails... ${name} lost \`\`${bet}\`\` gold.`);
+      message.channel.send(`${name} flipped Tails... ${name} lost \`${bet}\` gold.`);
       gold -= bet;
     }
     else if (guess === 't' || guess === 'tails') {
-      message.channel.send(`${name} flipped Tails! ${name} won \`\`${bet}\`\` gold!`);
+      message.channel.send(`${name} flipped Tails! ${name} won \`${bet}\` gold!`);
       gold += bet;
     }
     else message.channel.send(`${name} flipped Tails.`);

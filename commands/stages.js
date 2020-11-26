@@ -6,7 +6,7 @@ module.exports = {
   name: 'stages',
   aliases: ['maps'],
   description: 'Displays the current Splatoon 2 stages. Use ``?stages next`` for the next rotation.',
-  usage: '``?stages``',
+  usage: '`?stages`',
   hidden: false,
   async execute(_bot, message, args) {
     if (message.channel.type !== 'text') return;

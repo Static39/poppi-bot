@@ -4,7 +4,7 @@ module.exports = {
   name: 'setcolor',
   aliases: [],
   description: 'Can only be used be by bot owner. Changes a role\'s color.',
-  usage: '``?setcolor FFFF``',
+  usage: '`?setcolor FFFF`',
   hidden: true,
   execute(_bot, message, args) {
     const user = message.author.id;

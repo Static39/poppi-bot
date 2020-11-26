@@ -5,7 +5,7 @@ module.exports = {
   name: 'reload',
   aliases: ['re'],
   description: 'Bot owner only. Reloads all commands.',
-  usage: '``?reload gold``',
+  usage: '`?reload gold`',
   hidden: true,
   execute(_bot, message, args) {
   const user = message.author.id;

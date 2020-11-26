@@ -2,7 +2,7 @@ module.exports = {
   name: 'avatar',
   aliases: ['avy', 'pfp'],
   description: 'Displays a user\'s avatar. If no user is specified displays yours.',
-  usage: '``?avatar @MyWaifu``',
+  usage: '`?avatar @MyWaifu`',
   hidden: false,
   execute(bot, message, args) {
     if (message.channel.type !=='text') return;

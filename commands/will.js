@@ -2,7 +2,7 @@ module.exports = {
   name: 'will',
   aliases: [],
   description: 'Asks Poppi something (8ball).',
-  usage: '``?will Squish ever stop gambling?``',
+  usage: '`?will Squish ever stop gambling?`',
   hidden: false,
   execute(_bot, message, args) {
   if (message.channel.type !== 'text') return;

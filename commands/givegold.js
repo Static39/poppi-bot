@@ -4,7 +4,7 @@ module.exports = {
   name: 'givegold',
   aliases: ['gg'],
   description: 'Gives gold to the specified user.',
-  usage: '``?givegold @greed 9999``',
+  usage: '`?givegold @greed 9999`',
   hidden: false,
   async execute(bot, message, args) {
 
@@ -62,6 +62,6 @@ module.exports = {
   }
 
 
-  message.channel.send(`${targetName} has been given \`\`${gift}\`\` gold.`);
+  message.channel.send(`${targetName} has been given \`${gift}\` gold.`);
  },
 };

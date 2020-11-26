@@ -5,7 +5,7 @@ module.exports = {
   name: 'cleanup',
   aliases: ['clean', 'purge', 'wipe'],
   description: 'Deletes up to 30 messages from bots and bot messages. Defaults to 10.',
-  usage: '``?cleanup 25``',
+  usage: '`?cleanup 25`',
   hidden: true,
   execute(bot, message, args) {
     if (message.channel.type !== 'text') return;

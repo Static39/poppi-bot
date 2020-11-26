@@ -4,7 +4,7 @@ module.exports = {
   name: 'gold',
   aliases: ['g'],
   description: 'Shows a user\'s gold. If no user is specified shows yours.',
-  usage: '``?gold @greed``',
+  usage: '`?gold @greed`',
   hidden: false,
   async execute(bot, message, args) {
   if (message.channel.type !== 'text') return;
@@ -19,6 +19,6 @@ module.exports = {
   // Fetches user from database
   const userData = await bot.goldCheck(Gold, user.id);
 
-  message.channel.send(`${name} has \`\`${userData.gold}\`\` gold.`);
+  message.channel.send(`${name} has \`${userData.gold}\` gold.`);
  },
 };
