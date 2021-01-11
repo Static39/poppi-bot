@@ -158,7 +158,7 @@ module.exports = {
         chr = "Palutena";
         break;
       case 50:
-        chr = "Pittoo";
+        chr = "Dark Pit";
         break;
       case 51:
         chr = "Olimar";
@@ -255,6 +255,9 @@ module.exports = {
         break;
       case 82:
         chr = "Steve";
+        break;
+      case 83:
+        chr = "Sephiroth";
         break;
       default:
         return message.channel.send("An error occured. Please contact Masterpon.");
