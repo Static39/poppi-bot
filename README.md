@@ -6,7 +6,7 @@ Runs with [Discord.js](https://discord.js.org/) and [Node.js](https://nodejs.org
 ## Features
 * Basic currency system
 
-* YouTube video to MP3/FLAC converter
+* YouTube video to MP3 converter
 
 * Splatoon 2 rotation display
 
