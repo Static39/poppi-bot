@@ -11,8 +11,8 @@ const { exec } = require('child_process');
 module.exports = {
 	name: 'download',
 	aliases: ['convert'],
-	description: 'Converts a youtube link to an mp3 or flac. Defaults to mp3.',
-	usage: '``?download https://www.youtube.com/watch?v=TzqBFURAZDA flac``',
+	description: 'Converts a youtube link to an mp3.',
+	usage: '``?download https://www.youtube.com/watch?v=TzqBFURAZDA``',
 	hidden: false,
 	async execute(_bot, message, args) {
 		if (message.channel.type !== 'text') return;
